@@ -1,0 +1,16 @@
+extends ./layout
+
+block main
+  h1(class="display-4 text-center my-4") Create a new Account
+  .main-content
+    form(action="/register", method="post")
+      .form-group
+        label(for="email") Email:
+        input(class="form-control" type="email" id="email" name="email")
+      .form-group
+        label(for="password") Choose a Password:
+        input(class="form-control" type="password" id="password" name="password")
+      .form-group
+        label(for="confirmPassword") Repeat Password:
+        input(class="form-control" type="password" id="confirmPassword" name="confirmPassword")
+      button(class="btn btn-primary btn-lg btn-block" type="submit") Register
