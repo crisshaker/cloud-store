@@ -32,7 +32,7 @@ app.use(
     store: new MongoStore({
       mongooseConnection: db
     })
-  })
+  });
 );
 
 app.use((req, res, next) => {
