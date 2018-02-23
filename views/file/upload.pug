@@ -1,4 +1,4 @@
-extends ./layout
+extends ../layout
 
 block main
   h1.display-4.text-center.my-4 Upload a file
@@ -9,5 +9,9 @@ block main
         .custom-file
           input#customFile.custom-file-input(type="file" name="file")
           label.custom-file-label(for="customFile") Choose file
+      .form-group
+        div(class="custom-control custom-checkbox")
+          input(type="checkbox" class="custom-control-input" name="public" id="customCheck1")
+          label(class="custom-control-label" for="customCheck1") Make Public
 
       button(class="btn btn-primary btn-lg btn-block" type="submit") Upload

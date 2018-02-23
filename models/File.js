@@ -5,7 +5,8 @@ const FileSchema = new Schema(
   {
     _user: { type: Schema.Types.ObjectId, ref: "User" },
     originalName: String,
-    path: String
+    path: String,
+    private: { type: Boolean, default: true }
   },
   { timestamps: true }
 );

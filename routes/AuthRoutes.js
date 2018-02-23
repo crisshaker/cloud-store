@@ -5,7 +5,7 @@ const { loggedOut, requireLogin } = require("../middleware");
 
 module.exports = app => {
   app.get("/register", loggedOut, (req, res) => {
-    return res.render("register");
+    return res.render("auth/register");
   });
 
   app.post("/register", loggedOut, async (req, res, next) => {
@@ -31,7 +31,7 @@ module.exports = app => {
   });
 
   app.get("/login", loggedOut, (req, res) => {
-    return res.render("login");
+    return res.render("auth/login");
   });
 
   app.post("/login", async (req, res, next) => {

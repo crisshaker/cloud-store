@@ -1,4 +1,4 @@
-extends ./layout
+extends ../layout
 
 block main
   h1.display-4.text-center.my-4 Files
@@ -7,5 +7,5 @@ block main
     a(class="btn btn-primary btn-block my-4" href="/files/upload") Upload a new File
     ul.list-group
       each file in files
-        li.list-group.item
-          a(href=`/files/${file._id}/download`)= file.originalName
+        li.list-group-item
+          a(href=`/files/${file._id}`)= file.originalName

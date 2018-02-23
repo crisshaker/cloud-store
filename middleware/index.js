@@ -23,3 +23,15 @@ module.exports.ownsFile = (req, res, next) => {
 
   return next();
 };
+
+module.exports.hasAccess = (req, res, next) => {
+  if (
+    !req.file.private ||
+    String(req.file._user) === String(req.session.userId)
+  ) {
+    return next();
+  }
+  const error = new Error("Access Denied");
+  error.status = 403;
+  return next(error);
+};

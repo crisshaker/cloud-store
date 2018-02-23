@@ -1,0 +1,9 @@
+extends ../layout
+
+block main
+  h1.display-4.text-center.my-4 Birds
+  .main-content
+    ul.list-group
+      each bird in birds
+        li.list-group-item
+          a(href=`/birds/${bird._id}`)= bird.email
