@@ -16,15 +16,6 @@ const UserSchema = new Schema({
   }
 });
 
-UserSchema.pre("save", function(next) {
-  const user = this;
-  bcrypt.hash(user.password, 10, function(err, hash) {
-    if (err) return next(err);
-    user.password = hash;
-    return next();
-  });
-});
-
 UserSchema.methods.authenticate = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function(err, matching) {
     if (err) return callback(err);

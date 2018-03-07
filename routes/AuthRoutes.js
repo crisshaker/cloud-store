@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const User = mongoose.model("User");
 const Util = require("../util");
 const { loggedOut, requireLogin } = require("../middleware");
@@ -24,7 +25,9 @@ module.exports = app => {
       return Util.error("Email taken", next);
     }
 
-    const user = await User.create(req.body);
+    const hash = await bcrypt.hash(password, 10);
+
+    const user = await User.create({ ...req.body, password: hash });
     req.session.userId = user._id;
 
     return res.redirect("/profile");
