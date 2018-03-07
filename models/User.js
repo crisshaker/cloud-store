@@ -17,16 +17,12 @@ const UserSchema = new Schema({
 });
 
 UserSchema.methods.authenticate = async function(candidatePassword, callback) {
-  if (callback) {
-    return bcrypt.compare(candidatePassword, this.password, function(
-      err,
-      matching
-    ) {
-      if (err) return callback(err);
-      return callback(null, matching);
-    });
-  }
-  return bcrypt.compare(candidatePassword, this.password);
+  if (!callback) return bcrypt.compare(candidatePassword, this.password);
+
+  bcrypt.compare(candidatePassword, this.password, function(err, matching) {
+    if (err) return callback(err);
+    return callback(null, matching);
+  });
 };
 
 module.exports = UserSchema;

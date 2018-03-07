@@ -1,0 +1,9 @@
+extends ../layout
+
+block main
+  h1.display-4.text-center.my-4 Public Files
+  .main-content
+    ul.list-group
+      each file in files
+        li.list-group-item
+          a(href=`/files/${file._id}`)= file.originalName

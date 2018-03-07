@@ -45,8 +45,8 @@ module.exports.POST_login = async (req, res, next) => {
   if (!user) {
     return Util.error("Invalid email", next);
   }
-  const matching = await user.authenticate(password);
 
+  const matching = await user.authenticate(password);
   if (!matching) {
     return Util.error("Wrong Password", next);
   }
