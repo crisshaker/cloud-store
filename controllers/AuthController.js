@@ -45,16 +45,14 @@ module.exports.POST_login = async (req, res, next) => {
   if (!user) {
     return Util.error("Invalid email", next);
   }
-  user.authenticate(password, (err, matching) => {
-    if (err) return Util.error(err.message, next);
+  const matching = await user.authenticate(password);
 
-    if (!matching) {
-      return Util.error("Wrong Password", next);
-    }
+  if (!matching) {
+    return Util.error("Wrong Password", next);
+  }
 
-    req.session.userId = user._id;
-    return res.redirect("/profile");
-  });
+  req.session.userId = user._id;
+  return res.redirect("/profile");
 };
 
 module.exports.GET_logout = async (req, res) => {
